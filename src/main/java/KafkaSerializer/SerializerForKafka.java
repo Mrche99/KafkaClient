@@ -13,7 +13,7 @@ public class SerializerForKafka<T> implements Serializer<T> {
     @Override
     public byte[] serialize(String topic, T data) {
           try {
-            return objectMapper.writeValueAsBytes(data);
+            return objectMapper.writeValueAsBytes(data);//Преобразуем данные объекта нашего класса в байтовый массив
         }
         catch (Exception e) {
             throw new RuntimeException(e);

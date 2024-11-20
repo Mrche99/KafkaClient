@@ -26,15 +26,15 @@ public class KafkaMessageConsumer {
 
     }
     public void consumeLastMessage(String topic, int numMessages,int partition) {
-        TopicPartition topicPartition = new TopicPartition(topic, partition);
+        TopicPartition topicPartition = new TopicPartition(topic, partition);//Указываем единственную партицию в топике
         consumer.assign(Collections.singletonList(topicPartition));
 
-        // Устанавливаем смещение на конец партиции
-        consumer.seekToEnd(Collections.singletonList(topicPartition));
+
+        consumer.seekToEnd(Collections.singletonList(topicPartition));// Устанавливаем смещение на конец партиции
         long endOffset = consumer.position(topicPartition);
 
-        // Рассчитываем начальное смещение
-        long startOffset = Math.max(endOffset - numMessages, 0);
+
+        long startOffset = Math.max(endOffset - numMessages, 0);// Рассчитываем начальное смещение
         consumer.seek(topicPartition, startOffset);
 
         // Читаем сообщения

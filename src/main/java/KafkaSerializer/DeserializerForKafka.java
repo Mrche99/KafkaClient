@@ -14,11 +14,11 @@ public class DeserializerForKafka<T> implements Deserializer<T> {
     public DeserializerForKafka() {
         // Конструктор по умолчанию
     }
-
+    //Метод для конфигурации десериализатора
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
         try {
-            String className = (String) configs.get("targetClass");
+            String className = (String) configs.get("targetClass");//Получение имя класса из конфигурации
             this.targetClass = (Class<T>) Class.forName(className);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Не удалось загрузить targetClass", e);
@@ -31,7 +31,7 @@ public class DeserializerForKafka<T> implements Deserializer<T> {
             return null;
         }
         try {
-            return mapper.readValue(data, targetClass);
+            return mapper.readValue(data, targetClass);//Десериализуем JSON из байтового массива в объект класса targetClass
         } catch (Exception e) {
             throw new RuntimeException("Ошибка десериализации", e);
         }

@@ -11,7 +11,7 @@ public class Main {
 
         KafkaMessageProducer producer = new KafkaMessageProducer(bootstrapServers);
         try {
-            producer.sendMessage(topic, new MyMessage("test5", 332321));
+            producer.sendMessage(topic, new MyMessage("test5", 332321)); //Попытка отправить сообщения по порту 9092
             producer.close();
             System.out.println("Сообщение отправлено");
         } catch (Exception e) {
@@ -21,7 +21,7 @@ public class Main {
 
         KafkaMessageConsumer consumer = new KafkaMessageConsumer(bootstrapServers, topic);
         try {
-            consumer.consumeLastMessage(topic, 5,0);
+            consumer.consumeLastMessage(topic, 5,0);//Попытка прочитать N последних сообщений
             consumer.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
