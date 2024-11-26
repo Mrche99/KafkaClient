@@ -19,8 +19,8 @@ public class KafkaMessageProducer {
 
         this.producer = new KafkaProducer<>(props);
     }
-    public void sendMessage(String topic, MyMessage message) {
-        producer.send(new ProducerRecord<>(topic, message));//Используя кастомый десериализуем и отправляем данные в кафку по определенному топику
+    public void sendMessage(String topic,String key ,MyMessage message) {
+        producer.send(new ProducerRecord<>(topic,key ,message));//Используя кастомый десериализуем и отправляем данные в кафку по определенному топику
     }
     public void close() {
         producer.close();

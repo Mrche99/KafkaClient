@@ -8,10 +8,11 @@ public class Main {
 
         String bootstrapServers = "localhost:9092";
         String topic = "testTopic";
+        String testKey = "testKey";
 
         KafkaMessageProducer producer = new KafkaMessageProducer(bootstrapServers);
         try {
-            producer.sendMessage(topic, new MyMessage("test5", 332321)); //Попытка отправить сообщения по порту 9092
+            producer.sendMessage(topic,testKey ,new MyMessage("test5", 332321)); //Попытка отправить сообщения по порту 9092
             producer.close();
             System.out.println("Сообщение отправлено");
         } catch (Exception e) {
