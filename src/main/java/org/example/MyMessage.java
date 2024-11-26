@@ -8,6 +8,9 @@ public class MyMessage {
     private String field1;
     private int field2;
 
+    public MyMessage(){//конструктор по умолчанию для корректной работы Jackson'а
+
+    }
 
     public MyMessage(String field1, int field2) {
         this.field1 = field1;
